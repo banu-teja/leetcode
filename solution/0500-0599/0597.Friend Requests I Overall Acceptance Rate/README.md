@@ -1,22 +1,22 @@
 ---
 comments: true
-difficulty: 简单
-edit_url: https://github.com/doocs/leetcode/edit/main/solution/0500-0599/0597.Friend%20Requests%20I%20Overall%20Acceptance%20Rate/README.md
+difficulty: Easy
+edit_url: https://github.com/doocs/leetcode/edit/main/solution/0500-0599/0597.Friend%20Requests%20I%20Overall%20Acceptance%20Rate/README_EN.md
 tags:
-    - 数据库
+    - Database
 ---
 
 <!-- problem:start -->
 
-# [597. 好友申请 I：总体通过率 🔒](https://leetcode.cn/problems/friend-requests-i-overall-acceptance-rate)
+# [597. Friend Requests I Overall Acceptance Rate 🔒](https://leetcode.com/problems/friend-requests-i-overall-acceptance-rate)
 
-[English Version](/solution/0500-0599/0597.Friend%20Requests%20I%20Overall%20Acceptance%20Rate/README_EN.md)
+[中文文档](/solution/0500-0599/0597.Friend%20Requests%20I%20Overall%20Acceptance%20Rate/README.md)
 
-## 题目描述
+## Description
 
 <!-- description:start -->
 
-<p>表：<code>FriendRequest</code></p>
+<p>Table: <code>FriendRequest</code></p>
 
 <pre>
 +----------------+---------+
@@ -26,13 +26,13 @@ tags:
 | send_to_id     | int     |
 | request_date   | date    |
 +----------------+---------+
-该表可能包含重复项（换句话说，在SQL中，该表没有主键）。
-该表包含发送请求的用户的 ID ，接受请求的用户的 ID 以及请求的日期。
+This table may contain duplicates (In other words, there is no primary key for this table in SQL).
+This table contains the ID of the user who sent the request, the ID of the user who received the request, and the date of the request.
 </pre>
 
 <p>&nbsp;</p>
 
-<p>表：<code>RequestAccepted</code></p>
+<p>Table: <code>RequestAccepted</code></p>
 
 <pre>
 +----------------+---------+
@@ -42,30 +42,30 @@ tags:
 | accepter_id    | int     |
 | accept_date    | date    |
 +----------------+---------+
-该表可能包含重复项（换句话说，在SQL中，该表没有主键）。
-该表包含发送请求的用户的 ID ，接受请求的用户的 ID 以及请求通过的日期。</pre>
+This table may contain duplicates (In other words, there is no primary key for this table in SQL).
+This table contains the ID of the user who sent the request, the ID of the user who received the request, and the date when the request was accepted.
+</pre>
 
 <p>&nbsp;</p>
 
-<p>求出好友申请的通过率，用 2 位小数表示。通过率由接受好友申请的数目除以申请总数。</p>
+<p>Find the overall acceptance rate of requests, which is the number of acceptance divided by the number of requests. Return the answer rounded to 2 decimals places.</p>
 
-<p><strong>提示：</strong></p>
+<p><strong>Note that:</strong></p>
 
 <ul>
-	<li>通过的好友申请不一定都在表&nbsp;<code>friend_request</code>&nbsp;中。你只需要统计总的被通过的申请数（不管它们在不在表&nbsp;<code>FriendRequest</code>&nbsp;中），并将它除以申请总数，得到通过率</li>
-	<li>一个好友申请发送者有可能会给接受者发几条好友申请，也有可能一个好友申请会被通过好几次。这种情况下，重复的好友申请只统计一次。</li>
-	<li>如果一个好友申请都没有，你应该返回&nbsp;<code>accept_rate</code>&nbsp;为 0.00 。</li>
+	<li>The accepted requests are not necessarily from the table <code>friend_request</code>. In this case, Count the total accepted requests (no matter whether they are in the original requests), and divide it by the number of requests to get the acceptance rate.</li>
+	<li>It is possible that a sender sends multiple requests to the same receiver, and a request could be accepted more than once. In this case, the &lsquo;duplicated&rsquo; requests or acceptances are only counted once.</li>
+	<li>If there are no requests at all, you should return 0.00 as the <code>accept_rate</code>.</li>
 </ul>
 
-<p>返回结果应该如下例所示。</p>
+<p>The result format is in the following example.</p>
 
 <p>&nbsp;</p>
-
-<p><strong>示例 1：</strong></p>
+<p><strong class="example">Example 1:</strong></p>
 
 <pre>
-<strong>输入：</strong>
-FriendRequest 表：
+<strong>Input:</strong> 
+FriendRequest table:
 +-----------+------------+--------------+
 | sender_id | send_to_id | request_date |
 +-----------+------------+--------------+
@@ -75,7 +75,7 @@ FriendRequest 表：
 | 2         | 3          | 2016/06/02   |
 | 3         | 4          | 2016/06/09   |
 +-----------+------------+--------------+
-RequestAccepted 表：
+RequestAccepted table:
 +--------------+-------------+-------------+
 | requester_id | accepter_id | accept_date |
 +--------------+-------------+-------------+
@@ -85,31 +85,31 @@ RequestAccepted 表：
 | 3            | 4           | 2016/06/09  |
 | 3            | 4           | 2016/06/10  |
 +--------------+-------------+-------------+
-<strong>输出：</strong>
+<strong>Output:</strong> 
 +-------------+
 | accept_rate |
 +-------------+
 | 0.8         |
 +-------------+
-<strong>解释：</strong>
-总共有 5 个请求，有 4 个不同的通过请求，所以通过率是 0.80</pre>
+<strong>Explanation:</strong> 
+There are 4 unique accepted requests, and there are 5 requests in total. So the rate is 0.80.
+</pre>
 
 <p>&nbsp;</p>
-
-<p><strong>进阶:</strong></p>
+<p><strong>Follow up:</strong></p>
 
 <ul>
-	<li>你能写一个查询语句得到每个月的通过率吗？</li>
-	<li>你能求出每一天的累计通过率吗？</li>
+	<li>Could you find the acceptance rate for every month?</li>
+	<li>Could you find the cumulative acceptance rate for every day?</li>
 </ul>
 
 <!-- description:end -->
 
-## 解法
+## Solutions
 
 <!-- solution:start -->
 
-### 方法一
+### Solution 1
 
 <!-- tabs:start -->
 

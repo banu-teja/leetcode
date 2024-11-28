@@ -1,87 +1,85 @@
 ---
 comments: true
-difficulty: 简单
-edit_url: https://github.com/doocs/leetcode/edit/main/solution/0700-0799/0733.Flood%20Fill/README.md
+difficulty: Easy
+edit_url: https://github.com/doocs/leetcode/edit/main/solution/0700-0799/0733.Flood%20Fill/README_EN.md
 tags:
-    - 深度优先搜索
-    - 广度优先搜索
-    - 数组
-    - 矩阵
+    - Depth-First Search
+    - Breadth-First Search
+    - Array
+    - Matrix
 ---
 
 <!-- problem:start -->
 
-# [733. 图像渲染](https://leetcode.cn/problems/flood-fill)
+# [733. Flood Fill](https://leetcode.com/problems/flood-fill)
 
-[English Version](/solution/0700-0799/0733.Flood%20Fill/README_EN.md)
+[中文文档](/solution/0700-0799/0733.Flood%20Fill/README.md)
 
-## 题目描述
+## Description
 
 <!-- description:start -->
 
-<p>有一幅以&nbsp;<code>m x n</code>&nbsp;的二维整数数组表示的图画&nbsp;<code>image</code>&nbsp;，其中&nbsp;<code>image[i][j]</code>&nbsp;表示该图画的像素值大小。你也被给予三个整数 <code>sr</code> ,&nbsp; <code>sc</code> 和 <code>color</code> 。你应该从像素&nbsp;<code>image[sr][sc]</code>&nbsp;开始对图像进行上色&nbsp;<strong>填充</strong> 。</p>
+<p>You are given an image represented by an <code>m x n</code> grid of integers <code>image</code>, where <code>image[i][j]</code> represents the pixel value of the image. You are also given three integers <code>sr</code>, <code>sc</code>, and <code>color</code>. Your task is to perform a <strong>flood fill</strong> on the image starting from the pixel <code>image[sr][sc]</code>.</p>
 
-<p>为了完成 <strong>上色工作</strong>：</p>
+<p>To perform a <strong>flood fill</strong>:</p>
 
 <ol>
-	<li>从初始像素开始，将其颜色改为 <code>color</code>。</li>
-	<li>对初始坐标的 <strong>上下左右四个方向上</strong> 相邻且与初始像素的原始颜色同色的像素点执行相同操作。</li>
-	<li>通过检查与初始像素的原始颜色相同的相邻像素并修改其颜色来继续 <strong>重复</strong> 此过程。</li>
-	<li>当 <strong>没有</strong> 其它原始颜色的相邻像素时 <strong>停止</strong> 操作。</li>
+	<li>Begin with the starting pixel and change its color to <code>color</code>.</li>
+	<li>Perform the same process for each pixel that is <strong>directly adjacent</strong> (pixels that share a side with the original pixel, either horizontally or vertically) and shares the <strong>same color</strong> as the starting pixel.</li>
+	<li>Keep <strong>repeating</strong> this process by checking neighboring pixels of the <em>updated</em> pixels&nbsp;and modifying their color if it matches the original color of the starting pixel.</li>
+	<li>The process <strong>stops</strong> when there are <strong>no more</strong> adjacent pixels of the original color to update.</li>
 </ol>
 
-<p>最后返回经过上色渲染&nbsp;<strong>修改</strong> 后的图像&nbsp;。</p>
+<p>Return the <strong>modified</strong> image after performing the flood fill.</p>
 
 <p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
 
-<p><strong>示例 1:</strong></p>
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">image = [[1,1,1],[1,1,0],[1,0,1]], sr = 1, sc = 1, color = 2</span></p>
 
-<p><img src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0700-0799/0733.Flood%20Fill/images/flood1-grid.jpg" /></p>
+<p><strong>Output:</strong> <span class="example-io">[[2,2,2],[2,2,0],[2,0,1]]</span></p>
 
-<div class="example-block"><strong>输入：</strong>image = [[1,1,1],[1,1,0],[1,0,1]]，sr = 1, sc = 1, color = 2</div>
+<p><strong>Explanation:</strong></p>
 
-<div class="example-block"><strong>输出：</strong>[[2,2,2],[2,2,0],[2,0,1]]</div>
+<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0700-0799/0733.Flood%20Fill/images/flood1-grid.jpg" style="width: 613px; height: 253px;" /></p>
 
-<div class="example-block"><b>解释：</b>在图像的正中间，坐标 <code>(sr,sc)=(1,1)</code>&nbsp;（即红色像素）,在路径上所有符合条件的像素点的颜色都被更改成相同的新颜色（即蓝色像素）。</div>
+<p>From the center of the image with position <code>(sr, sc) = (1, 1)</code> (i.e., the red pixel), all pixels connected by a path of the same color as the starting pixel (i.e., the blue pixels) are colored with the new color.</p>
 
-<div class="example-block">注意，右下角的像素 <strong>没有</strong> 更改为2，因为它不是在上下左右四个方向上与初始点相连的像素点。</div>
+<p>Note the bottom corner is <strong>not</strong> colored 2, because it is not horizontally or vertically connected to the starting pixel.</p>
+</div>
 
-<div class="example-block">&nbsp;</div>
+<p><strong class="example">Example 2:</strong></p>
 
-<p><strong>示例 2:</strong></p>
+<div class="example-block">
+<p><strong>Input:</strong> <span class="example-io">image = [[0,0,0],[0,0,0]], sr = 0, sc = 0, color = 0</span></p>
 
-<div class="example-block"><strong>输入：</strong>image = [[0,0,0],[0,0,0]], sr = 0, sc = 0, color = 0</div>
+<p><strong>Output:</strong> <span class="example-io">[[0,0,0],[0,0,0]]</span></p>
 
-<div class="example-block"><strong>输出：</strong>[[0,0,0],[0,0,0]]</div>
+<p><strong>Explanation:</strong></p>
 
-<div class="example-block"><strong>解释：</strong>初始像素已经用 0 着色，这与目标颜色相同。因此，不会对图像进行任何更改。</div>
+<p>The starting pixel is already colored with 0, which is the same as the target color. Therefore, no changes are made to the image.</p>
+</div>
 
 <p>&nbsp;</p>
-
-<p><strong>提示:</strong></p>
+<p><strong>Constraints:</strong></p>
 
 <ul>
 	<li><code>m == image.length</code></li>
 	<li><code>n == image[i].length</code></li>
 	<li><code>1 &lt;= m, n &lt;= 50</code></li>
 	<li><code>0 &lt;= image[i][j], color &lt; 2<sup>16</sup></code></li>
-	<li><code>0 &lt;= sr &lt;&nbsp;m</code></li>
-	<li><code>0 &lt;= sc &lt;&nbsp;n</code></li>
+	<li><code>0 &lt;= sr &lt; m</code></li>
+	<li><code>0 &lt;= sc &lt; n</code></li>
 </ul>
 
 <!-- description:end -->
 
-## 解法
+## Solutions
 
 <!-- solution:start -->
 
-### 方法一：Flood fill 算法
-
-Flood fill 算法是从一个区域中提取若干个连通的点与其他相邻区域区分开（或分别染成不同颜色）的经典算法。因为其思路类似洪水从一个区域扩散到所有能到达的区域而得名。
-
-最简单的实现方法是采用 DFS 的递归方法，也可以采用 BFS 的迭代来实现。
-
-时间复杂度 $O(m \times n)$，空间复杂度 $O(m \times n)$。其中 $m$ 和 $n$ 分别为图像的行数和列数。
+### Solution 1
 
 <!-- tabs:start -->
 
@@ -251,7 +249,7 @@ impl Solution {
 
 <!-- solution:start -->
 
-### 方法二
+### Solution 2
 
 <!-- tabs:start -->
 

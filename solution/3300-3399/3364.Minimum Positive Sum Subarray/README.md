@@ -1,75 +1,73 @@
 ---
 comments: true
-difficulty: 简单
-edit_url: https://github.com/doocs/leetcode/edit/main/solution/3300-3399/3364.Minimum%20Positive%20Sum%20Subarray/README.md
+difficulty: Easy
+edit_url: https://github.com/doocs/leetcode/edit/main/solution/3300-3399/3364.Minimum%20Positive%20Sum%20Subarray/README_EN.md
 ---
 
 <!-- problem:start -->
 
-# [3364. 最小正和子数组](https://leetcode.cn/problems/minimum-positive-sum-subarray)
+# [3364. Minimum Positive Sum Subarray](https://leetcode.com/problems/minimum-positive-sum-subarray)
 
-[English Version](/solution/3300-3399/3364.Minimum%20Positive%20Sum%20Subarray/README_EN.md)
+[中文文档](/solution/3300-3399/3364.Minimum%20Positive%20Sum%20Subarray/README.md)
 
-## 题目描述
+## Description
 
 <!-- description:start -->
 
-<p>给你一个整数数组 <code>nums</code> 和 <strong>两个</strong> 整数 <code>l</code> 和 <code>r</code>。你的任务是找到一个长度在 <code>l</code> 和 <code>r</code> 之间（包含）且和大于 0 的 <strong>子数组</strong> 的 <strong>最小</strong> 和。</p>
+<p>You are given an integer array <code>nums</code> and <strong>two</strong> integers <code>l</code> and <code>r</code>. Your task is to find the <strong>minimum</strong> sum of a <strong>subarray</strong> whose size is between <code>l</code> and <code>r</code> (inclusive) and whose sum is greater than 0.</p>
 
-<p>返回满足条件的子数组的 <strong>最小</strong> 和。如果不存在这样的子数组，则返回 -1。</p>
+<p>Return the <strong>minimum</strong> sum of such a subarray. If no such subarray exists, return -1.</p>
 
-<p><strong>子数组</strong> 是数组中的一个连续 <b>非空</b> 元素序列。</p>
+<p>A <strong>subarray</strong> is a contiguous <b>non-empty</b> sequence of elements within an array.</p>
 
 <p>&nbsp;</p>
-
-<p><strong class="example">示例 1：</strong></p>
+<p><strong class="example">Example 1:</strong></p>
 
 <div class="example-block">
-<p><strong>输入：</strong> <span class="example-io">nums = [3, -2, 1, 4], l = 2, r = 3</span></p>
+<p><strong>Input:</strong> <span class="example-io">nums = [3, -2, 1, 4], l = 2, r = 3</span></p>
 
-<p><strong>输出：</strong> <span class="example-io">1</span></p>
+<p><strong>Output:</strong> <span class="example-io">1</span></p>
 
-<p><strong>解释：</strong></p>
+<p><strong>Explanation:</strong></p>
 
-<p>长度在 <code>l = 2</code> 和 <code>r = 3</code> 之间且和大于 0 的子数组有：</p>
+<p>The subarrays of length between <code>l = 2</code> and <code>r = 3</code> where the sum is greater than 0 are:</p>
 
 <ul>
-	<li><code>[3, -2]</code> 和为 1</li>
-	<li><code>[1, 4]</code> 和为 5</li>
-	<li><code>[3, -2, 1]</code> 和为 2</li>
-	<li><code>[-2, 1, 4]</code> 和为 3</li>
+	<li><code>[3, -2]</code> with a sum of 1</li>
+	<li><code>[1, 4]</code> with a sum of 5</li>
+	<li><code>[3, -2, 1]</code> with a sum of 2</li>
+	<li><code>[-2, 1, 4]</code> with a sum of 3</li>
 </ul>
 
-<p>其中，子数组 <code>[3, -2]</code> 的和为 1，是所有正和中最小的。因此，答案为 1。</p>
+<p>Out of these, the subarray <code>[3, -2]</code> has a sum of 1, which is the smallest positive sum. Hence, the answer is 1.</p>
 </div>
 
-<p><strong class="example">示例 2：</strong></p>
+<p><strong class="example">Example 2:</strong></p>
 
 <div class="example-block">
-<p><strong>输入：</strong> <span class="example-io">nums = [-2, 2, -3, 1], l = 2, r = 3</span></p>
+<p><strong>Input:</strong> <span class="example-io">nums = [-2, 2, -3, 1], l = 2, r = 3</span></p>
 
-<p><strong>输出：</strong> <span class="example-io">-1</span></p>
+<p><strong>Output:</strong> <span class="example-io">-1</span></p>
 
-<p><strong>解释：</strong></p>
+<p><strong>Explanation:</strong></p>
 
-<p>不存在长度在 <code>l</code> 和 <code>r</code> 之间且和大于 0 的子数组。因此，答案为 -1。</p>
+<p>There is no subarray of length between <code>l</code> and <code>r</code> that has a sum greater than 0. So, the answer is -1.</p>
 </div>
 
-<p><strong class="example">示例 3：</strong></p>
+<p><strong class="example">Example 3:</strong></p>
 
 <div class="example-block">
-<p><strong>输入：</strong> <span class="example-io">nums = [1, 2, 3, 4], l = 2, r = 4</span></p>
+<p><strong>Input:</strong> <span class="example-io">nums = [1, 2, 3, 4], l = 2, r = 4</span></p>
 
-<p><strong>输出：</strong> <span class="example-io">3</span></p>
+<p><strong>Output:</strong> <span class="example-io">3</span></p>
 
-<p><strong>解释：</strong></p>
+<p><strong>Explanation:</strong></p>
 
-<p>子数组 <code>[1, 2]</code> 的长度为 2，和为&nbsp;3，是所有正和中最小的。因此，答案为 3。</p>
+<p>The subarray <code>[1, 2]</code> has a length of 2 and the minimum sum greater than 0. So, the answer is 3.</p>
 </div>
 
 <p>&nbsp;</p>
-
-<p><strong>提示：</strong></p>
+<p><strong>Constraints:</strong></p>
 
 <ul>
 	<li><code>1 &lt;= nums.length &lt;= 100</code></li>
@@ -79,17 +77,17 @@ edit_url: https://github.com/doocs/leetcode/edit/main/solution/3300-3399/3364.Mi
 
 <!-- description:end -->
 
-## 解法
+## Solutions
 
 <!-- solution:start -->
 
-### 方法一：枚举
+### Solution 1: Enumeration
 
-我们可以枚举子数组的左端点 $i$，然后在 $[i, n)$ 的区间内从左往右枚举右端点 $j$，计算区间 $[i, j]$ 的和 $s$，如果 $s$ 大于 0 且区间长度在 $[l, r]$ 之间，我们就更新答案。
+We can enumerate the left endpoint $i$ of the subarray, then enumerate the right endpoint $j$ from $i$ to $n$ within the interval $[i, n)$. We calculate the sum $s$ of the interval $[i, j]$. If $s$ is greater than $0$ and the interval length is between $[l, r]$, we update the answer.
 
-最后，如果答案仍然是初始值，说明没有找到符合条件的子数组，返回 $-1$，否则返回答案。
+Finally, if the answer is still the initial value, it means no subarray meets the conditions, so we return $-1$. Otherwise, we return the answer.
 
-时间复杂度 $O(n^2)$，其中 $n$ 是数组 $\textit{nums}$ 的长度。空间复杂度 $O(1)$。
+The time complexity is $O(n^2)$, where $n$ is the length of the array $\textit{nums}$. The space complexity is $O(1)$.
 
 <!-- tabs:start -->
 

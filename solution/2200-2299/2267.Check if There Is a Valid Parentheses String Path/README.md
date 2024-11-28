@@ -1,97 +1,91 @@
 ---
 comments: true
-difficulty: 困难
-edit_url: https://github.com/doocs/leetcode/edit/main/solution/2200-2299/2267.Check%20if%20There%20Is%20a%20Valid%20Parentheses%20String%20Path/README.md
+difficulty: Hard
+edit_url: https://github.com/doocs/leetcode/edit/main/solution/2200-2299/2267.Check%20if%20There%20Is%20a%20Valid%20Parentheses%20String%20Path/README_EN.md
 rating: 2084
-source: 第 292 场周赛 Q4
+source: Weekly Contest 292 Q4
 tags:
-    - 数组
-    - 动态规划
-    - 矩阵
+    - Array
+    - Dynamic Programming
+    - Matrix
 ---
 
 <!-- problem:start -->
 
-# [2267. 检查是否有合法括号字符串路径](https://leetcode.cn/problems/check-if-there-is-a-valid-parentheses-string-path)
+# [2267. Check if There Is a Valid Parentheses String Path](https://leetcode.com/problems/check-if-there-is-a-valid-parentheses-string-path)
 
-[English Version](/solution/2200-2299/2267.Check%20if%20There%20Is%20a%20Valid%20Parentheses%20String%20Path/README_EN.md)
+[中文文档](/solution/2200-2299/2267.Check%20if%20There%20Is%20a%20Valid%20Parentheses%20String%20Path/README.md)
 
-## 题目描述
+## Description
 
 <!-- description:start -->
 
-<p>一个括号字符串是一个 <strong>非空</strong>&nbsp;且只包含&nbsp;<code>'('</code>&nbsp;和&nbsp;<code>')'</code>&nbsp;的字符串。如果下面&nbsp;<strong>任意</strong>&nbsp;条件为&nbsp;<strong>真</strong>&nbsp;，那么这个括号字符串就是&nbsp;<strong>合法的</strong>&nbsp;。</p>
+<p>A parentheses string is a <strong>non-empty</strong> string consisting only of <code>&#39;(&#39;</code> and <code>&#39;)&#39;</code>. It is <strong>valid</strong> if <strong>any</strong> of the following conditions is <strong>true</strong>:</p>
 
 <ul>
-	<li>字符串是&nbsp;<code>()</code>&nbsp;。</li>
-	<li>字符串可以表示为&nbsp;<code>AB</code>（<code>A</code>&nbsp;连接&nbsp;<code>B</code>），<code>A</code> 和&nbsp;<code>B</code>&nbsp;都是合法括号序列。</li>
-	<li>字符串可以表示为&nbsp;<code>(A)</code>&nbsp;，其中&nbsp;<code>A</code>&nbsp;是合法括号序列。</li>
+	<li>It is <code>()</code>.</li>
+	<li>It can be written as <code>AB</code> (<code>A</code> concatenated with <code>B</code>), where <code>A</code> and <code>B</code> are valid parentheses strings.</li>
+	<li>It can be written as <code>(A)</code>, where <code>A</code> is a valid parentheses string.</li>
 </ul>
 
-<p>给你一个&nbsp;<code>m x n</code>&nbsp;的括号网格图矩阵&nbsp;<code>grid</code>&nbsp;。网格图中一个&nbsp;<strong>合法括号路径</strong>&nbsp;是满足以下所有条件的一条路径：</p>
+<p>You are given an <code>m x n</code> matrix of parentheses <code>grid</code>. A <strong>valid parentheses string path</strong> in the grid is a path satisfying <strong>all</strong> of the following conditions:</p>
 
 <ul>
-	<li>路径开始于左上角格子&nbsp;<code>(0, 0)</code>&nbsp;。</li>
-	<li>路径结束于右下角格子&nbsp;<code>(m - 1, n - 1)</code>&nbsp;。</li>
-	<li>路径每次只会向 <strong>下</strong>&nbsp;或者向 <strong>右</strong>&nbsp;移动。</li>
-	<li>路径经过的格子组成的括号字符串是<strong>&nbsp;合法</strong>&nbsp;的。</li>
+	<li>The path starts from the upper left cell <code>(0, 0)</code>.</li>
+	<li>The path ends at the bottom-right cell <code>(m - 1, n - 1)</code>.</li>
+	<li>The path only ever moves <strong>down</strong> or <strong>right</strong>.</li>
+	<li>The resulting parentheses string formed by the path is <strong>valid</strong>.</li>
 </ul>
 
-<p>如果网格图中存在一条 <strong>合法括号路径</strong>&nbsp;，请返回&nbsp;<code>true</code>&nbsp;，否则返回&nbsp;<code>false</code>&nbsp;。</p>
+<p>Return <code>true</code> <em>if there exists a <strong>valid parentheses string path</strong> in the grid.</em> Otherwise, return <code>false</code>.</p>
 
 <p>&nbsp;</p>
-
-<p><strong>示例 1：</strong></p>
-
-<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/2200-2299/2267.Check%20if%20There%20Is%20a%20Valid%20Parentheses%20String%20Path/images/example1drawio.png" style="width: 521px; height: 300px;" /></p>
-
+<p><strong class="example">Example 1:</strong></p>
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/2200-2299/2267.Check%20if%20There%20Is%20a%20Valid%20Parentheses%20String%20Path/images/example1drawio.png" style="width: 521px; height: 300px;" />
 <pre>
-<b>输入：</b>grid = [["(","(","("],[")","(",")"],["(","(",")"],["(","(",")"]]
-<b>输出：</b>true
-<b>解释：</b>上图展示了两条路径，它们都是合法括号字符串路径。
-第一条路径得到的合法字符串是 "()(())" 。
-第二条路径得到的合法字符串是 "((()))" 。
-注意可能有其他的合法括号字符串路径。
+<strong>Input:</strong> grid = [[&quot;(&quot;,&quot;(&quot;,&quot;(&quot;],[&quot;)&quot;,&quot;(&quot;,&quot;)&quot;],[&quot;(&quot;,&quot;(&quot;,&quot;)&quot;],[&quot;(&quot;,&quot;(&quot;,&quot;)&quot;]]
+<strong>Output:</strong> true
+<strong>Explanation:</strong> The above diagram shows two possible paths that form valid parentheses strings.
+The first path shown results in the valid parentheses string &quot;()(())&quot;.
+The second path shown results in the valid parentheses string &quot;((()))&quot;.
+Note that there may be other valid parentheses string paths.
 </pre>
 
-<p><strong>示例 2：</strong></p>
-
-<p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/2200-2299/2267.Check%20if%20There%20Is%20a%20Valid%20Parentheses%20String%20Path/images/example2drawio.png" style="width: 165px; height: 165px;" /></p>
-
+<p><strong class="example">Example 2:</strong></p>
+<img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/2200-2299/2267.Check%20if%20There%20Is%20a%20Valid%20Parentheses%20String%20Path/images/example2drawio.png" style="width: 165px; height: 165px;" />
 <pre>
-<b>输入：</b>grid = [[")",")"],["(","("]]
-<b>输出：</b>false
-<b>解释：</b>两条可行路径分别得到 "))(" 和 ")((" 。由于它们都不是合法括号字符串，我们返回 false 。
+<strong>Input:</strong> grid = [[&quot;)&quot;,&quot;)&quot;],[&quot;(&quot;,&quot;(&quot;]]
+<strong>Output:</strong> false
+<strong>Explanation:</strong> The two possible paths form the parentheses strings &quot;))(&quot; and &quot;)((&quot;. Since neither of them are valid parentheses strings, we return false.
 </pre>
 
 <p>&nbsp;</p>
-
-<p><strong>提示：</strong></p>
+<p><strong>Constraints:</strong></p>
 
 <ul>
 	<li><code>m == grid.length</code></li>
 	<li><code>n == grid[i].length</code></li>
 	<li><code>1 &lt;= m, n &lt;= 100</code></li>
-	<li><code>grid[i][j]</code>&nbsp;要么是&nbsp;<code>'('</code>&nbsp;，要么是&nbsp;<code>')'</code> 。</li>
+	<li><code>grid[i][j]</code> is either <code>&#39;(&#39;</code> or <code>&#39;)&#39;</code>.</li>
 </ul>
 
 <!-- description:end -->
 
-## 解法
+## Solutions
 
 <!-- solution:start -->
 
-### 方法一：DFS + 剪枝
+### Solution 1: DFS + Pruning
 
-我们记矩阵的行数为 $m$，列数为 $n$。
+Let $m$ be the number of rows and $n$ be the number of columns in the matrix.
 
-如果 $m + n - 1$ 为奇数，或者左上角和右下角的括号不匹配，那么一定不存在合法路径，直接返回 $\text{false}$。
+If $m + n - 1$ is odd, or the parentheses in the top-left and bottom-right corners do not match, then there is no valid path, and we directly return $\text{false}$.
 
-否则，我们设计一个函数 $\textit{dfs}(i, j, k)$，表示从 $(i, j)$ 出发，且当前括号的平衡度为 $k$，是否存在合法路径。其中，平衡度 $k$ 的定义为：从 $(0, 0)$ 到 $(i, j)$ 的路径中，左括号的个数减去右括号的个数。
+Otherwise, we design a function $\textit{dfs}(i, j, k)$, which represents whether there is a valid path starting from $(i, j)$ with the current balance of parentheses being $k$. The balance $k$ is defined as the number of left parentheses minus the number of right parentheses in the path from $(0, 0)$ to $(i, j)$.
 
-如果平衡度 $k$ 小于 $0$ 或者大于 $m + n - i - j$，那么一定不存在合法路径，直接返回 $\text{false}$。如果 $(i, j)$ 正好是右下角的格子，那么只有当 $k = 0$ 时才存在合法路径。否则，我们枚举 $(i, j)$ 的下一个格子 $(x, y)$，如果 $(x, y)$ 是合法的格子且 $\textit{dfs}(x, y, k)$ 为 $\text{true}$，那么就存在合法路径。
+If the balance $k$ is less than $0$ or greater than $m + n - i - j$, then there is no valid path, and we directly return $\text{false}$. If $(i, j)$ is the bottom-right cell, then there is a valid path only if $k = 0$. Otherwise, we enumerate the next cell $(x, y)$ of $(i, j)$. If $(x, y)$ is a valid cell and $\textit{dfs}(x, y, k)$ is $\text{true}$, then there is a valid path.
 
-时间复杂度 $O(m \times n \times (m + n))$，空间复杂度 $O(m \times n \times (m + n))$。其中 $m$ 和 $n$ 分别是矩阵的行数和列数。
+The time complexity is $O(m \times n \times (m + n))$, and the space complexity is $O(m \times n \times (m + n))$. Here, $m$ and $n$ are the number of rows and columns in the matrix, respectively.
 
 <!-- tabs:start -->
 

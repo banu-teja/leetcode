@@ -1,68 +1,73 @@
 ---
 comments: true
-difficulty: 困难
-edit_url: https://github.com/doocs/leetcode/edit/main/solution/0900-0999/0906.Super%20Palindromes/README.md
+difficulty: Hard
+edit_url: https://github.com/doocs/leetcode/edit/main/solution/0900-0999/0906.Super%20Palindromes/README_EN.md
 tags:
-    - 数学
-    - 枚举
+    - Math
+    - Enumeration
 ---
 
 <!-- problem:start -->
 
-# [906. 超级回文数](https://leetcode.cn/problems/super-palindromes)
+# [906. Super Palindromes](https://leetcode.com/problems/super-palindromes)
 
-[English Version](/solution/0900-0999/0906.Super%20Palindromes/README_EN.md)
+[中文文档](/solution/0900-0999/0906.Super%20Palindromes/README.md)
 
-## 题目描述
+## Description
 
 <!-- description:start -->
 
-<p>如果一个正整数自身是回文数，而且它也是一个回文数的平方，那么我们称这个数为超级回文数。</p>
+<p>Let&#39;s say a positive integer is a <strong>super-palindrome</strong> if it is a palindrome, and it is also the square of a palindrome.</p>
 
-<p>现在，给定两个正整数&nbsp;<code>L</code> 和&nbsp;<code>R</code> （以字符串形式表示），返回包含在范围 <code>[L, R]</code> 中的超级回文数的数目。</p>
-
-<p>&nbsp;</p>
-
-<p><strong>示例：</strong></p>
-
-<pre><strong>输入：</strong>L = &quot;4&quot;, R = &quot;1000&quot;
-<strong>输出：</strong>4
-<strong>解释：
-</strong>4，9，121，以及 484 是超级回文数。
-注意 676 不是一个超级回文数： 26 * 26 = 676，但是 26 不是回文数。</pre>
+<p>Given two positive integers <code>left</code> and <code>right</code> represented as strings, return <em>the number of <strong>super-palindromes</strong> integers in the inclusive range</em> <code>[left, right]</code>.</p>
 
 <p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
 
-<p><strong>提示：</strong></p>
+<pre>
+<strong>Input:</strong> left = &quot;4&quot;, right = &quot;1000&quot;
+<strong>Output:</strong> 4
+<strong>Explanation</strong>: 4, 9, 121, and 484 are superpalindromes.
+Note that 676 is not a superpalindrome: 26 * 26 = 676, but 26 is not a palindrome.
+</pre>
 
-<ol>
-	<li><code>1 &lt;= len(L) &lt;= 18</code></li>
-	<li><code>1 &lt;= len(R) &lt;= 18</code></li>
-	<li><code>L</code> 和&nbsp;<code>R</code>&nbsp;是表示&nbsp;<code>[1, 10^18)</code>&nbsp;范围的整数的字符串。</li>
-	<li><code>int(L) &lt;= int(R)</code></li>
-</ol>
+<p><strong class="example">Example 2:</strong></p>
+
+<pre>
+<strong>Input:</strong> left = &quot;1&quot;, right = &quot;2&quot;
+<strong>Output:</strong> 1
+</pre>
 
 <p>&nbsp;</p>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+	<li><code>1 &lt;= left.length, right.length &lt;= 18</code></li>
+	<li><code>left</code> and <code>right</code> consist of only digits.</li>
+	<li><code>left</code> and <code>right</code> cannot have leading zeros.</li>
+	<li><code>left</code> and <code>right</code> represent integers in the range <code>[1, 10<sup>18</sup> - 1]</code>.</li>
+	<li><code>left</code> is less than or equal to <code>right</code>.</li>
+</ul>
 
 <!-- description:end -->
 
-## 解法
+## Solutions
 
 <!-- solution:start -->
 
-### 方法一：预处理 + 枚举
+### Solution 1: Preprocessing + Enumeration
 
-根据题目描述，我们假设超级回文数 $x = p^2 \in [1, 10^{18})$，其中 $p$ 是回文数，那么 $p \in [1, 10^9)$。我们可以枚举回文数 $p$ 的前半部分，然后将其翻转后拼接，得到所有的回文数，记录在数组 $ps$ 中。
+According to the problem description, we assume that the super palindrome number $x = p^2 \in [1, 10^{18})$, where $p$ is a palindrome number, so $p \in [1, 10^9)$. We can enumerate the first half of the palindrome number $p$, then reverse it, and concatenate it to get all palindrome numbers, which are recorded in the array $ps$.
 
-接下来，我们遍历数组 $ps$，对于每个 $p$，我们计算 $p^2$，判断是否在区间 $[L, R]$ 中，同时判断 $p^2$ 是否是回文数，若是，答案加一。
+Next, we traverse the array $ps$. For each $p$, we calculate $p^2$, check whether it is in the interval $[L, R]$, and also check whether $p^2$ is a palindrome number. If it is, the answer is incremented by one.
 
-遍历结束后，返回答案即可。
+After the traversal, return the answer.
 
-时间复杂度 $O(M^{\frac{1}{4}} \times \log M)$，空间复杂度 $O(M^{\frac{1}{4}})$。其中 $M$ 是 $L$ 和 $R$ 的上界，本题中 $M \leq 10^{18}$。
+The time complexity is $O(M^{\frac{1}{4}} \times \log M)$, and the space complexity is $O(M^{\frac{1}{4}})$. Where $M$ is the upper bound of $L$ and $R$, and in this problem, $M \leq 10^{18}$.
 
-相似题目：
+Similar problems:
 
--   [2967. 使数组成为等数数组的最小代价](https://github.com/doocs/leetcode/blob/main/solution/2900-2999/2967.Minimum%20Cost%20to%20Make%20Array%20Equalindromic/README.md)
+-   [2967. Minimum Cost to Make Array Equalindromic](https://github.com/doocs/leetcode/blob/main/solution/2900-2999/2967.Minimum%20Cost%20to%20Make%20Array%20Equalindromic/README_EN.md)
 
 <!-- tabs:start -->
 

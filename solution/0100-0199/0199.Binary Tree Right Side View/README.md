@@ -1,88 +1,82 @@
 ---
 comments: true
-difficulty: 中等
-edit_url: https://github.com/doocs/leetcode/edit/main/solution/0100-0199/0199.Binary%20Tree%20Right%20Side%20View/README.md
+difficulty: Medium
+edit_url: https://github.com/doocs/leetcode/edit/main/solution/0100-0199/0199.Binary%20Tree%20Right%20Side%20View/README_EN.md
 tags:
-    - 树
-    - 深度优先搜索
-    - 广度优先搜索
-    - 二叉树
+    - Tree
+    - Depth-First Search
+    - Breadth-First Search
+    - Binary Tree
 ---
 
 <!-- problem:start -->
 
-# [199. 二叉树的右视图](https://leetcode.cn/problems/binary-tree-right-side-view)
+# [199. Binary Tree Right Side View](https://leetcode.com/problems/binary-tree-right-side-view)
 
-[English Version](/solution/0100-0199/0199.Binary%20Tree%20Right%20Side%20View/README_EN.md)
+[中文文档](/solution/0100-0199/0199.Binary%20Tree%20Right%20Side%20View/README.md)
 
-## 题目描述
+## Description
 
 <!-- description:start -->
 
-<p>给定一个二叉树的 <strong>根节点</strong> <code>root</code>，想象自己站在它的右侧，按照从顶部到底部的顺序，返回从右侧所能看到的节点值。</p>
+<p>Given the <code>root</code> of a binary tree, imagine yourself standing on the <strong>right side</strong> of it, return <em>the values of the nodes you can see ordered from top to bottom</em>.</p>
 
 <p>&nbsp;</p>
-
-<p><strong class="example">示例 1：</strong></p>
+<p><strong class="example">Example 1:</strong></p>
 
 <div class="example-block">
-<p><span class="example-io"><b>输入：</b>root = [1,2,3,null,5,null,4]</span></p>
+<p><strong>Input:</strong> <span class="example-io">root = [1,2,3,null,5,null,4]</span></p>
 
-<p><strong>输出：</strong><span class="example-io">[1,3,4]</span></p>
+<p><strong>Output:</strong> <span class="example-io">[1,3,4]</span></p>
 
-<p><strong>解释：</strong></p>
+<p><strong>Explanation:</strong></p>
 
 <p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0100-0199/0199.Binary%20Tree%20Right%20Side%20View/images/tmpd5jn43fs-1.png" style="width: 400px; height: 207px;" /></p>
 </div>
 
-<p><strong class="example">示例 2：</strong></p>
+<p><strong class="example">Example 2:</strong></p>
 
 <div class="example-block">
-<p><span class="example-io"><b>输入：</b>root = [1,2,3,4,null,null,null,5]</span></p>
+<p><strong>Input:</strong> <span class="example-io">root = [1,2,3,4,null,null,null,5]</span></p>
 
-<p><span class="example-io"><b>输出：</b>[1,3,4,5]</span></p>
+<p><strong>Output:</strong> <span class="example-io">[1,3,4,5]</span></p>
 
-<p><strong>解释：</strong></p>
+<p><strong>Explanation:</strong></p>
 
 <p><img alt="" src="https://fastly.jsdelivr.net/gh/doocs/leetcode@main/solution/0100-0199/0199.Binary%20Tree%20Right%20Side%20View/images/tmpkpe40xeh-1.png" style="width: 400px; height: 214px;" /></p>
 </div>
 
-<p><strong class="example">示例 3：</strong></p>
+<p><strong class="example">Example 3:</strong></p>
 
 <div class="example-block">
-<p><strong>输入：</strong><span class="example-io">root = [1,null,3]</span></p>
+<p><strong>Input:</strong> <span class="example-io">root = [1,null,3]</span></p>
 
-<p><strong>输出：</strong><span class="example-io">[1,3]</span></p>
+<p><strong>Output:</strong> <span class="example-io">[1,3]</span></p>
 </div>
 
-<p><strong class="example">示例 4：</strong></p>
+<p><strong class="example">Example 4:</strong></p>
 
 <div class="example-block">
-<p><span class="example-io"><b>输入：</b>root = []</span></p>
+<p><strong>Input:</strong> <span class="example-io">root = []</span></p>
 
-<p><strong>输出：</strong><span class="example-io">[]</span></p>
+<p><strong>Output:</strong> <span class="example-io">[]</span></p>
+</div>
 
 <p>&nbsp;</p>
-</div>
-
-<p><strong>提示:</strong></p>
+<p><strong>Constraints:</strong></p>
 
 <ul>
-	<li>二叉树的节点个数的范围是 <code>[0,100]</code></li>
-	<li><meta charset="UTF-8" /><code>-100&nbsp;&lt;= Node.val &lt;= 100</code>&nbsp;</li>
+	<li>The number of nodes in the tree is in the range <code>[0, 100]</code>.</li>
+	<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
 </ul>
 
 <!-- description:end -->
 
-## 解法
+## Solutions
 
 <!-- solution:start -->
 
-### 方法一：BFS
-
-使用 BFS 层序遍历二叉树，每层最后一个节点即为该层的右视图节点。
-
-时间复杂度 $O(n)$，空间复杂度 $O(n)$。其中 $n$ 为二叉树节点个数。
+### Solution 1
 
 <!-- tabs:start -->
 
@@ -326,11 +320,7 @@ impl Solution {
 
 <!-- solution:start -->
 
-### 方法二：DFS
-
-使用 DFS 深度优先遍历二叉树，每次先遍历右子树，再遍历左子树，这样每层第一个遍历到的节点即为该层的右视图节点。
-
-时间复杂度 $O(n)$，空间复杂度 $O(n)$。其中 $n$ 为二叉树节点个数。
+### Solution 2
 
 <!-- tabs:start -->
 

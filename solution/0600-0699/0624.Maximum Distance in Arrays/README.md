@@ -1,72 +1,63 @@
 ---
 comments: true
-difficulty: 中等
-edit_url: https://github.com/doocs/leetcode/edit/main/solution/0600-0699/0624.Maximum%20Distance%20in%20Arrays/README.md
+difficulty: Medium
+edit_url: https://github.com/doocs/leetcode/edit/main/solution/0600-0699/0624.Maximum%20Distance%20in%20Arrays/README_EN.md
 tags:
-    - 贪心
-    - 数组
+    - Greedy
+    - Array
 ---
 
 <!-- problem:start -->
 
-# [624. 数组列表中的最大距离](https://leetcode.cn/problems/maximum-distance-in-arrays)
+# [624. Maximum Distance in Arrays](https://leetcode.com/problems/maximum-distance-in-arrays)
 
-[English Version](/solution/0600-0699/0624.Maximum%20Distance%20in%20Arrays/README_EN.md)
+[中文文档](/solution/0600-0699/0624.Maximum%20Distance%20in%20Arrays/README.md)
 
-## 题目描述
+## Description
 
 <!-- description:start -->
 
-<p>给定&nbsp;<code>m</code>&nbsp;个数组，每个数组都已经按照升序排好序了。</p>
+<p>You are given <code>m</code> <code>arrays</code>, where each array is sorted in <strong>ascending order</strong>.</p>
 
-<p>现在你需要从两个不同的数组中选择两个整数（每个数组选一个）并且计算它们的距离。两个整数&nbsp;<code>a</code>&nbsp;和&nbsp;<code>b</code>&nbsp;之间的距离定义为它们差的绝对值&nbsp;<code>|a-b|</code>&nbsp;。</p>
+<p>You can pick up two integers from two different arrays (each array picks one) and calculate the distance. We define the distance between two integers <code>a</code> and <code>b</code> to be their absolute difference <code>|a - b|</code>.</p>
 
-<p>返回最大距离。</p>
+<p>Return <em>the maximum distance</em>.</p>
 
-<p><strong>示例 1：</strong></p>
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
 
 <pre>
-<strong>输入：</strong>[[1,2,3],[4,5],[1,2,3]]
-<strong>输出：</strong>4
-<strong>解释：</strong>
-一种得到答案 4 的方法是从第一个数组或者第三个数组中选择 1，同时从第二个数组中选择 5 。
+<strong>Input:</strong> arrays = [[1,2,3],[4,5],[1,2,3]]
+<strong>Output:</strong> 4
+<strong>Explanation:</strong> One way to reach the maximum distance 4 is to pick 1 in the first or third array and pick 5 in the second array.
 </pre>
 
-<p><strong class="example">示例 2：</strong></p>
+<p><strong class="example">Example 2:</strong></p>
 
 <pre>
-<strong>输入：</strong>arrays = [[1],[1]]
-<b>输出：</b>0
+<strong>Input:</strong> arrays = [[1],[1]]
+<strong>Output:</strong> 0
 </pre>
 
 <p>&nbsp;</p>
-
-<p><strong>提示：</strong></p>
+<p><strong>Constraints:</strong></p>
 
 <ul>
 	<li><code>m == arrays.length</code></li>
 	<li><code>2 &lt;= m &lt;= 10<sup>5</sup></code></li>
 	<li><code>1 &lt;= arrays[i].length &lt;= 500</code></li>
 	<li><code>-10<sup>4</sup> &lt;= arrays[i][j] &lt;= 10<sup>4</sup></code></li>
-	<li><code>arrays[i]</code>&nbsp;以&nbsp;<strong>升序</strong>&nbsp;排序。</li>
-	<li>所有数组中最多有&nbsp;<code>10<sup>5</sup></code> 个整数。</li>
+	<li><code>arrays[i]</code> is sorted in <strong>ascending order</strong>.</li>
+	<li>There will be at most <code>10<sup>5</sup></code> integers in all the arrays.</li>
 </ul>
-
-<p>&nbsp;</p>
 
 <!-- description:end -->
 
-## 解法
+## Solutions
 
 <!-- solution:start -->
 
-### 方法一：维护最大值和最小值
-
-我们注意到，最大距离一定是两个数组中的一个最大值和另一个最小值之间的距离。因此，我们可以维护两个变量，分别表示当前数组中的最大值和最小值，然后遍历数组，更新最大距离，同时更新最大值和最小值。
-
-遍历结束后，即可得到最大距离。
-
-时间复杂度 $O(m)$，空间复杂度 $O(1)$。其中 $m$ 为数组的个数。
+### Solution 1
 
 <!-- tabs:start -->
 
@@ -196,7 +187,7 @@ var maxDistance = function (arrays) {
 
 <!-- solution:start -->
 
-### 方法二：一行
+### Solution 2: One-line solution
 
 <!-- tabs:start -->
 

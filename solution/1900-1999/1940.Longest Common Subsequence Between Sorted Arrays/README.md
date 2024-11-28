@@ -1,73 +1,73 @@
 ---
 comments: true
-difficulty: 中等
-edit_url: https://github.com/doocs/leetcode/edit/main/solution/1900-1999/1940.Longest%20Common%20Subsequence%20Between%20Sorted%20Arrays/README.md
+difficulty: Medium
+edit_url: https://github.com/doocs/leetcode/edit/main/solution/1900-1999/1940.Longest%20Common%20Subsequence%20Between%20Sorted%20Arrays/README_EN.md
 tags:
-    - 数组
-    - 哈希表
-    - 计数
+    - Array
+    - Hash Table
+    - Counting
 ---
 
 <!-- problem:start -->
 
-# [1940. 排序数组之间的最长公共子序列 🔒](https://leetcode.cn/problems/longest-common-subsequence-between-sorted-arrays)
+# [1940. Longest Common Subsequence Between Sorted Arrays 🔒](https://leetcode.com/problems/longest-common-subsequence-between-sorted-arrays)
 
-[English Version](/solution/1900-1999/1940.Longest%20Common%20Subsequence%20Between%20Sorted%20Arrays/README_EN.md)
+[中文文档](/solution/1900-1999/1940.Longest%20Common%20Subsequence%20Between%20Sorted%20Arrays/README.md)
 
-## 题目描述
+## Description
 
 <!-- description:start -->
 
-<p>给定一个由整数数组组成的数组&nbsp;<code>arrays</code>，其中&nbsp;<code>arrays[i]</code>&nbsp;是 <strong>严格递增</strong> 排序的，返回一个 <strong>所有</strong> 数组均包含的 <strong>最长公共子序列</strong> 的整数数组。</p>
+<p>Given an array of integer arrays <code>arrays</code> where each <code>arrays[i]</code> is sorted in <strong>strictly increasing</strong> order, return <em>an integer array representing the <strong>longest common subsequence</strong> among&nbsp;<strong>all</strong> the arrays</em>.</p>
 
-<p><strong>子序列</strong> 是从另一个序列派生出来的序列，删除一些元素或不删除任何元素，而不改变其余元素的顺序。</p>
+<p>A <strong>subsequence</strong> is a sequence that can be derived from another sequence by deleting some elements (possibly none) without changing the order of the remaining elements.</p>
 
-<p><strong>示例1:</strong></p>
+<p>&nbsp;</p>
+<p><strong class="example">Example 1:</strong></p>
 
 <pre>
-<strong>输入:</strong> arrays = [[<u>1</u>,3,<u>4</u>],
-&nbsp;              [<u>1</u>,<u>4</u>,7,9]]
-<strong>输出:</strong> [1,4]
-<strong>解释:</strong>&nbsp;这两个数组中的最长子序列是[1,4]。
+<strong>Input:</strong> arrays = [[<u>1</u>,3,<u>4</u>],
+                 [<u>1</u>,<u>4</u>,7,9]]
+<strong>Output:</strong> [1,4]
+<strong>Explanation:</strong> The longest common subsequence in the two arrays is [1,4].
 </pre>
 
-<p><strong>示例 2:</strong></p>
+<p><strong class="example">Example 2:</strong></p>
 
 <pre>
-<strong>输入:</strong> arrays = [[<u>2</u>,<u>3</u>,<u>6</u>,8],
-&nbsp;              [1,<u>2</u>,<u>3</u>,5,<u>6</u>,7,10],
-&nbsp;              [<u>2</u>,<u>3</u>,4,<u>6</u>,9]]
-<strong>输出:</strong> [2,3,6]
-<strong>解释:</strong>&nbsp;这三个数组中的最长子序列是 [2,3,6]。
+<strong>Input:</strong> arrays = [[<u>2</u>,<u>3</u>,<u>6</u>,8],
+                 [1,<u>2</u>,<u>3</u>,5,<u>6</u>,7,10],
+                 [<u>2</u>,<u>3</u>,4,<u>6</u>,9]]
+<strong>Output:</strong> [2,3,6]
+<strong>Explanation:</strong> The longest common subsequence in all three arrays is [2,3,6].
 </pre>
 
-<p><strong>示例 3:</strong></p>
+<p><strong class="example">Example 3:</strong></p>
 
 <pre>
-<strong>输入:</strong> arrays = [[1,2,3,4,5],
-&nbsp;              [6,7,8]]
-<strong>输出:</strong> []
-<strong>解释:</strong>&nbsp;这两个数组之间没有公共子序列。
+<strong>Input:</strong> arrays = [[1,2,3,4,5],
+                 [6,7,8]]
+<strong>Output:</strong> []
+<strong>Explanation:</strong> There is no common subsequence between the two arrays.
 </pre>
 
 <p>&nbsp;</p>
-
-<p><strong>限制条件:</strong></p>
+<p><strong>Constraints:</strong></p>
 
 <ul>
 	<li><code>2 &lt;= arrays.length &lt;= 100</code></li>
 	<li><code>1 &lt;= arrays[i].length &lt;= 100</code></li>
 	<li><code>1 &lt;= arrays[i][j] &lt;= 100</code></li>
-	<li><code>arrays[i]</code> 是严格递增排序.</li>
+	<li><code>arrays[i]</code> is sorted in <strong>strictly increasing</strong> order.</li>
 </ul>
 
 <!-- description:end -->
 
-## 解法
+## Solutions
 
 <!-- solution:start -->
 
-### 方法一
+### Solution 1
 
 <!-- tabs:start -->
 
@@ -175,7 +175,7 @@ var longestCommonSubsequence = function (arrays) {
 
 <!-- solution:start -->
 
-### 方法二
+### Solution 2
 
 <!-- tabs:start -->
 

@@ -1,92 +1,90 @@
 ---
 comments: true
-difficulty: 中等
-edit_url: https://github.com/doocs/leetcode/edit/main/solution/2400-2499/2408.Design%20SQL/README.md
+difficulty: Medium
+edit_url: https://github.com/doocs/leetcode/edit/main/solution/2400-2499/2408.Design%20SQL/README_EN.md
 tags:
-    - 设计
-    - 数组
-    - 哈希表
-    - 字符串
+    - Design
+    - Array
+    - Hash Table
+    - String
 ---
 
 <!-- problem:start -->
 
-# [2408. 设计 SQL 🔒](https://leetcode.cn/problems/design-sql)
+# [2408. Design SQL 🔒](https://leetcode.com/problems/design-sql)
 
-[English Version](/solution/2400-2499/2408.Design%20SQL/README_EN.md)
+[中文文档](/solution/2400-2499/2408.Design%20SQL/README.md)
 
-## 题目描述
+## Description
 
 <!-- description:start -->
 
-<p>给定 <code>n</code> 个表，用两个数组 <code>names</code> 和 <code>columns</code>&nbsp;表示，其中 <code>names[i]</code> 是第 <code>i</code> 个表的名称，<code>columns[i]</code> 是第 <code>i</code> 个表的列数。</p>
+<p>You are given <code>n</code> tables represented with two arrays <code>names</code> and <code>columns</code>, where <code>names[i]</code> is the name of the <code>i<sup>th</sup></code> table and <code>columns[i]</code> is the number of columns of the <code>i<sup>th</sup></code> table.</p>
 
-<p>您能够执行以下&nbsp;<strong>操作</strong>:</p>
+<p>You should be able to perform the following <strong>operations</strong>:</p>
 
 <ul>
-	<li>在特定的表中&nbsp;<strong>插入&nbsp;</strong>一行。插入的每一行都有一个 id。id 是使用自动递增方法分配的，其中第一个插入行的 id 为 1，插入到同一个表中的其他行的 id 为最后一个插入行的id (即使它已被删除) 加1。</li>
-	<li>从指定表中&nbsp;<strong>删除&nbsp;</strong>一行。<strong>注意</strong>，删除一行不会影响下一个插入行的 id。</li>
-	<li>从任何表中&nbsp;<strong>查询&nbsp;</strong>一个特定的单元格并返回其值。</li>
+	<li><strong>Insert</strong> a row in a specific table. Each row you insert has an id. The id is assigned using an auto-increment method where the id of the first inserted row is 1, and the id of each other row inserted into the same table is the id of the last inserted row (even if it was deleted) plus one.</li>
+	<li><strong>Delete</strong> a row from a specific table. <strong>Note</strong> that deleting a row does not affect the id of the next inserted row.</li>
+	<li><strong>Select</strong> a specific cell from any table and return its value.</li>
 </ul>
 
-<p>实现&nbsp;<code>SQL</code> 类:</p>
+<p>Implement the <code>SQL</code> class:</p>
 
 <ul>
-	<li><code>SQL(String[] names, int[] columns)</code> 创造&nbsp;<code>n</code> 个表。</li>
-	<li><code>void insertRow(String name, String[] row)</code> 向表 <code>name</code>&nbsp;中添加一行。<strong>保证&nbsp;</strong>表存在，并且数组 <code>row</code> 的大小等于表中的列数。</li>
-	<li><code>void deleteRow(String name, int rowId)</code> 从表 <code>name</code>&nbsp;中移除行 <code>rowId</code>&nbsp;。<strong>保证&nbsp;</strong>表和行都&nbsp;<strong>存在</strong>。</li>
-	<li><code>String selectCell(String name, int rowId, int columnId)</code> 返回表 <code>name</code> 中 <code>rowId</code> 行和 <code>columnId</code> 列中的单元格值。</li>
+	<li><code>SQL(String[] names, int[] columns)</code> Creates the <code>n</code> tables.</li>
+	<li><code>void insertRow(String name, String[] row)</code> Adds a row to the table <code>name</code>. It is <strong>guaranteed</strong> that the table will exist, and the size of the array <code>row</code> is equal to the number of columns in the table.</li>
+	<li><code>void deleteRow(String name, int rowId)</code> Removes the row <code>rowId</code> from the table <code>name</code>. It is <strong>guaranteed</strong> that the table and row will <strong>exist</strong>.</li>
+	<li><code>String selectCell(String name, int rowId, int columnId)</code> Returns the value of the cell in the row <code>rowId</code> and the column <code>columnId</code> from the table <code>name</code>.</li>
 </ul>
 
 <p>&nbsp;</p>
-
-<p><strong class="example">示例 1:</strong></p>
+<p><strong class="example">Example 1:</strong></p>
 
 <pre>
-<strong>输入</strong>
-["SQL", "insertRow", "selectCell", "insertRow", "deleteRow", "selectCell"]
-[[["one", "two", "three"], [2, 3, 1]], ["two", ["first", "second", "third"]], ["two", 1, 3], ["two", ["fourth", "fifth", "sixth"]], ["two", 1], ["two", 2, 2]]
-<strong>输出</strong>
-[null, null, "third", null, null, "fifth"]
+<strong>Input</strong>
+[&quot;SQL&quot;, &quot;insertRow&quot;, &quot;selectCell&quot;, &quot;insertRow&quot;, &quot;deleteRow&quot;, &quot;selectCell&quot;]
+[[[&quot;one&quot;, &quot;two&quot;, &quot;three&quot;], [2, 3, 1]], [&quot;two&quot;, [&quot;first&quot;, &quot;second&quot;, &quot;third&quot;]], [&quot;two&quot;, 1, 3], [&quot;two&quot;, [&quot;fourth&quot;, &quot;fifth&quot;, &quot;sixth&quot;]], [&quot;two&quot;, 1], [&quot;two&quot;, 2, 2]]
+<strong>Output</strong>
+[null, null, &quot;third&quot;, null, null, &quot;fifth&quot;]
 
-<strong>解释</strong>
-SQL sql = new SQL(["one", "two", "three"], [2, 3, 1]); // 创建三个表。
-sql.insertRow("two", ["first", "second", "third"]); // 向表 "2" 添加一行。id 是 1。
-sql.selectCell("two", 1, 3); // 返回 "third"，查找表 "two" 中 id 为 1 的行中第三列的值。
-sql.insertRow("two", ["fourth", "fifth", "sixth"]); // 将另一行添加到表 "2" 中。它的 id 是 2。
-sql.deleteRow("two", 1); // 删除表 "two" 的第一行。注意，第二行仍然有 id 2。
-sql.selectCell("two", 2, 2); // 返回 "fifth"，查找表 "two" 中 id 为 2 的行中第二列的值。
+<strong>Explanation</strong>
+SQL sql = new SQL([&quot;one&quot;, &quot;two&quot;, &quot;three&quot;], [2, 3, 1]); // creates three tables.
+sql.insertRow(&quot;two&quot;, [&quot;first&quot;, &quot;second&quot;, &quot;third&quot;]); // adds a row to the table &quot;two&quot;. Its id is 1.
+sql.selectCell(&quot;two&quot;, 1, 3); // return &quot;third&quot;, finds the value of the third column in the row with id 1 of the table &quot;two&quot;.
+sql.insertRow(&quot;two&quot;, [&quot;fourth&quot;, &quot;fifth&quot;, &quot;sixth&quot;]); // adds another row to the table &quot;two&quot;. Its id is 2.
+sql.deleteRow(&quot;two&quot;, 1); // deletes the first row of the table &quot;two&quot;. Note that the second row will still have the id 2.
+sql.selectCell(&quot;two&quot;, 2, 2); // return &quot;fifth&quot;, finds the value of the second column in the row with id 2 of the table &quot;two&quot;.
 </pre>
 
 <p>&nbsp;</p>
-
-<p><strong>提示:</strong></p>
+<p><strong>Constraints:</strong></p>
 
 <ul>
 	<li><code>n == names.length == columns.length</code></li>
 	<li><code>1 &lt;= n &lt;= 10<sup>4</sup></code></li>
 	<li><code>1 &lt;= names[i].length, row[i].length, name.length &lt;= 20</code></li>
-	<li><code>names[i]</code>, <code>row[i]</code>, <code>name</code> 由小写英文字母组成。</li>
+	<li><code>names[i]</code>, <code>row[i]</code>, and <code>name</code> consist of lowercase English letters.</li>
 	<li><code>1 &lt;= columns[i] &lt;= 100</code></li>
-	<li>所有的 <code>names</code> 字符串都是&nbsp;<strong>不同&nbsp;</strong>的。</li>
-	<li><code>name</code> 存在于&nbsp;<code>names</code>.</li>
-	<li><code>row.length</code> 等于所选表中的列数。</li>
-	<li><code>rowId</code> 和&nbsp;<code>columnId</code> 是有效的值。</li>
-	<li>最多&nbsp;<code>250</code>&nbsp;次调用&nbsp;<code>insertRow</code> 和&nbsp;<code>deleteRow</code>&nbsp;。</li>
-	<li><code><font color="#333333"><font face="Helvetica Neue, Helvetica, Arial, sans-serif"><span style="font-size:14px"><span style="background-color:#ffffff">最多&nbsp;</span></span></font></font>10<sup>4</sup></code> 次调用&nbsp;<code>selectCell</code>。</li>
+	<li>All the strings of <code>names</code> are <strong>distinct</strong>.</li>
+	<li><code>name</code> exists in the array <code>names</code>.</li>
+	<li><code>row.length</code> equals the number of columns in the chosen table.</li>
+	<li><code>rowId</code> and <code>columnId</code> will be valid.</li>
+	<li>At most <code>250</code> calls will be made to <code>insertRow</code> and <code>deleteRow</code>.</li>
+	<li>At most <code>10<sup>4</sup></code> calls will be made to <code>selectCell</code>.</li>
 </ul>
 
 <!-- description:end -->
 
-## 解法
+## Solutions
 
 <!-- solution:start -->
 
-### 方法一：哈希表
+### Solution 1: Hash Table
 
-创建哈希表 `tables` 用于存储表名和表数据行的映射。直接模拟题目中的操作即可。
+Create a hash table `tables` to store the mapping of table names to table data rows. Directly simulate the operations in the problem.
 
-每个操作的时间复杂度均为 $O(1)$，空间复杂度 $O(n)$。
+The time complexity of each operation is $O(1)$, and the space complexity is $O(n)$.
 
 <!-- tabs:start -->
 

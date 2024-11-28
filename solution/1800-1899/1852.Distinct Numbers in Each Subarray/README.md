@@ -1,80 +1,100 @@
 ---
 comments: true
-difficulty: 中等
-edit_url: https://github.com/doocs/leetcode/edit/main/solution/1800-1899/1852.Distinct%20Numbers%20in%20Each%20Subarray/README.md
+difficulty: Medium
+edit_url: https://github.com/doocs/leetcode/edit/main/solution/1800-1899/1852.Distinct%20Numbers%20in%20Each%20Subarray/README_EN.md
 tags:
-    - 数组
-    - 哈希表
-    - 滑动窗口
+    - Array
+    - Hash Table
+    - Sliding Window
 ---
 
 <!-- problem:start -->
 
-# [1852. 每个子数组的数字种类数 🔒](https://leetcode.cn/problems/distinct-numbers-in-each-subarray)
+# [1852. Distinct Numbers in Each Subarray 🔒](https://leetcode.com/problems/distinct-numbers-in-each-subarray)
 
-[English Version](/solution/1800-1899/1852.Distinct%20Numbers%20in%20Each%20Subarray/README_EN.md)
+[中文文档](/solution/1800-1899/1852.Distinct%20Numbers%20in%20Each%20Subarray/README.md)
 
-## 题目描述
+## Description
 
 <!-- description:start -->
 
-<p>给你一个整数数组&nbsp;<code>nums</code>与一个整数 <code>k</code>，请你构造一个长度 <code>n-k+1</code> 的数组 <code>ans</code>，这个数组第<code>i</code>个元素 <code>ans[i]</code> 是每个长度为k的子数组 <code>nums[i:i+k-1] = [nums[i], nums[i+1], ..., nums[i+k-1]]</code>中数字的种类数。</p>
+<p>Given an integer array <code>nums</code> and an integer <code>k</code>, you are asked to construct the array <code>ans</code> of size <code>n-k+1</code> where <code>ans[i]</code> is the number of <strong>distinct</strong> numbers in the subarray <code>nums[i:i+k-1] = [nums[i], nums[i+1], ..., nums[i+k-1]]</code>.</p>
 
-<p>返回这个数组 <code>ans</code>。</p>
-
-<p>&nbsp;</p>
-
-<p><strong>示例 1:</strong></p>
-
-<pre>
-<strong>输入:</strong> nums = [1,2,3,2,2,1,3], k = 3
-<strong>输出:</strong> [3,2,2,2,3]
-<b>解释</b>：每个子数组的数字种类计算方法如下：
-- nums[0:2] = [1,2,3] 所以 ans[0] = 3
-- nums[1:3] = [2,3,2] 所以 ans[1] = 2
-- nums[2:4] = [3,2,2] 所以 ans[2] = 2
-- nums[3:5] = [2,2,1] 所以 ans[3] = 2
-- nums[4:6] = [2,1,3] 所以 ans[4] = 3
-</pre>
-
-<p><strong>示例&nbsp;2:</strong></p>
-
-<pre>
-<strong>输入:</strong> nums = [1,1,1,1,2,3,4], k = 4
-<strong>输出:</strong> [1,2,3,4]
-<strong>解释: </strong>每个子数组的数字种类计算方法如下：
-- nums[0:3] = [1,1,1,1] 所以 ans[0] = 1
-- nums[1:4] = [1,1,1,2] 所以 ans[1] = 2
-- nums[2:5] = [1,1,2,3] 所以 ans[2] = 3
-- nums[3:6] = [1,2,3,4] 所以 ans[3] = 4
-</pre>
+<p>Return <em>the array </em><code>ans</code>.</p>
 
 <p>&nbsp;</p>
 
-<p><strong>提示:</strong></p>
+<p><strong class="example">Example 1:</strong></p>
+
+<pre>
+
+<strong>Input:</strong> nums = [1,2,3,2,2,1,3], k = 3
+
+<strong>Output:</strong> [3,2,2,2,3]
+
+<strong>Explanation: </strong>The number of distinct elements in each subarray goes as follows:
+
+- nums[0:2] = [1,2,3] so ans[0] = 3
+
+- nums[1:3] = [2,3,2] so ans[1] = 2
+
+- nums[2:4] = [3,2,2] so ans[2] = 2
+
+- nums[3:5] = [2,2,1] so ans[3] = 2
+
+- nums[4:6] = [2,1,3] so ans[4] = 3
+
+</pre>
+
+<p><strong class="example">Example 2:</strong></p>
+
+<pre>
+
+<strong>Input:</strong> nums = [1,1,1,1,2,3,4], k = 4
+
+<strong>Output:</strong> [1,2,3,4]
+
+<strong>Explanation: </strong>The number of distinct elements in each subarray goes as follows:
+
+- nums[0:3] = [1,1,1,1] so ans[0] = 1
+
+- nums[1:4] = [1,1,1,2] so ans[1] = 2
+
+- nums[2:5] = [1,1,2,3] so ans[2] = 3
+
+- nums[3:6] = [1,2,3,4] so ans[3] = 4
+
+</pre>
+
+<p>&nbsp;</p>
+
+<p><strong>Constraints:</strong></p>
 
 <ul>
-	<li><code>1 &lt;= k &lt;= nums.length &lt;= 10<sup>5</sup></code></li>
-	<li><code>1 &lt;= nums[i] &lt;= 10<sup>5</sup></code></li>
+
+    <li><code>1 &lt;= k &lt;= nums.length &lt;= 10<sup>5</sup></code></li>
+
+    <li><code>1 &lt;= nums[i] &lt;= 10<sup>5</sup></code></li>
+
 </ul>
 
 <!-- description:end -->
 
-## 解法
+## Solutions
 
 <!-- solution:start -->
 
-### 方法一：滑动窗口 + 哈希表
+### Solution 1: Sliding Window + Hash Table
 
-我们用一个哈希表 $cnt$ 记录每个长度为 $k$ 的子数组中数字的出现次数。
+We use a hash table $cnt$ to record the occurrence times of each number in the subarray of length $k$.
 
-接下来，我们首先遍历数组前 $k$ 个元素，记录每个元素出现的次数，遍历后，我们将哈希表的大小作为答案数组的第一个元素。
+Next, we first traverse the first $k$ elements of the array, record the occurrence times of each element, and after the traversal, we take the size of the hash table as the first element of the answer array.
 
-然后，我们从下标 $k$ 继续遍历数组，每次遍历时，我们将当前元素的出现次数加一，并且将当前元素左边的元素的出现次数减一，如果减一后的出现次数为 $0$，则将其从哈希表中删除，然后将哈希表的大小作为答案数组的下一个元素，继续遍历。
+Then, we continue to traverse the array from the index $k$. Each time we traverse, we increase the occurrence times of the current element by one, and decrease the occurrence times of the element on the left of the current element by one. If the occurrence times of the left element become $0$ after subtraction, we remove it from the hash table. Then we take the size of the hash table as the next element of the answer array, and continue to traverse.
 
-遍历结束后，我们返回答案数组。
+After the traversal, we return the answer array.
 
-时间复杂度 $O(n)$，空间复杂度 $O(k)$。其中 $n$ 为数组 $nums$ 的长度，而 $k$ 为题目给定的参数。
+The time complexity is $O(n)$, and the space complexity is $O(k)$. Where $n$ is the length of the array $nums$, and $k$ is the parameter given by the problem.
 
 <!-- tabs:start -->
 
@@ -191,11 +211,11 @@ function distinctNumbers(nums: number[], k: number): number[] {
 
 <!-- solution:start -->
 
-### 方法二：滑动窗口 + 数组
+### Solution 2: Sliding Window + Array
 
-我们也可以用数组来代替哈希表，这样可以提升一定的性能。
+We can also use an array to replace the hash table, which can improve performance to some extent.
 
-时间复杂度 $O(n)$，空间复杂度 $O(M)$。其中 $n$ 为数组 $nums$ 的长度，而 $M$ 为数组 $nums$ 中的最大值，本题中 $M \leq 10^5$。
+The time complexity is $O(n)$, and the space complexity is $O(M)$. Where $n$ is the length of the array $nums$, and $M$ is the maximum value in the array $nums$. In this problem, $M \leq 10^5$.
 
 <!-- tabs:start -->
 
